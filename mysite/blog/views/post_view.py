@@ -1,11 +1,6 @@
-from django.views.generic import ListView, DetailView
-from blog.models import Post
+from django.http import HttpResponse
+from django.views import generic
 
-class PostView(ListView):
-    queryset = Post.objects.filter(status=1).order_by('-created_on')
-    template_name = "index.html"
-    context_object_name = "posts"
-
-class PostDetail(DetailView):
-    model = Post
-    template_name = 'post_detail.html'
+class PostView(generic.View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('Hello World')
